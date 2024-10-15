@@ -1,0 +1,25 @@
+<p>user-list works!</p>
+
+
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Email</td>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @for (item of userList; track $index)
+        {
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.email}}</td>
+        </tr>
+
+        }
+    </tbody>
+</table>
