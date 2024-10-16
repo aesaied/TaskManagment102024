@@ -8,7 +8,9 @@ import { AppRevenueProductComponent } from 'src/app/components/revenue-product/r
 import { AppRevenueForecastComponent } from 'src/app/components/revenue-forecast/revenue-forecast.component';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/models/user';
-import { catchError, map, retry, tap } from 'rxjs';
+import { catchError, map, Observable, retry, tap } from 'rxjs';
+import { Weather } from 'src/app/models/weather';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-starter',
@@ -20,7 +22,7 @@ import { catchError, map, retry, tap } from 'rxjs';
     AppDailyActivitiesComponent,
     AppBlogCardsComponent,
     AppRevenueProductComponent,
-    AppRevenueForecastComponent,
+    AppRevenueForecastComponent, CommonModule
   ],
   templateUrl: './starter.component.html',
   styleUrls: ['./starter.component.scss'],
@@ -28,9 +30,13 @@ import { catchError, map, retry, tap } from 'rxjs';
 })
 export class StarterComponent implements OnInit {
 
+  weatherData$: Observable<Weather[]>
   userList: User[];
   ngOnInit(): void {
 
+
+    this.weatherData$ = this.http.get<Weather[]>(
+      'https://localhost:7123/WeatherForecast');
 
     this.http.get<User[]>('https://jsonplaceholder.typicode.com/users').pipe(
 

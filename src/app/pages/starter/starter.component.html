@@ -19,3 +19,22 @@
     }
   </tbody>
 </table>
+
+
+
+
+
+@if(weatherData$ | async; as weatherData){
+
+<ul>
+  @for (weather of weatherData; track weather.date) {
+
+  <li>{{weather.summary}}</li>
+  }
+</ul>
+
+}
+
+@else{
+Loading...
+}
