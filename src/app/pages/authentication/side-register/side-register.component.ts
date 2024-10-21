@@ -20,6 +20,8 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './side-register.component.html',
 })
 export class AppSideRegisterComponent {
+
+  errorDetail?: string;
   constructor(private router: Router, private http: HttpClient) {
 
 
@@ -44,7 +46,19 @@ export class AppSideRegisterComponent {
 
     let request = this.http.post('https://localhost:7123/api/users/register', this.form.value);
 
-    request.subscribe();
+    request.subscribe({
+
+      next: () => {
+
+        alert('success!')
+      },
+      error: (err) => {
+
+        this.errorDetail = err;
+
+      }
+
+    });
     alert(JSON.stringify(this.form.value));
 
 
