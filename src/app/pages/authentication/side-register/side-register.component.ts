@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 import { ValidationPipe } from 'src/app/pipes/validation.pipe';
 import { compareValidator } from 'src/app/validators/compare.validator';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { F } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-side-register',
@@ -22,7 +24,8 @@ import { HttpClient } from '@angular/common/http';
 export class AppSideRegisterComponent {
 
   errorDetail?: string;
-  constructor(private router: Router, private http: HttpClient) {
+  isBusy = false;
+  constructor(private router: Router, private http: HttpClient, private toastr: ToastrService) {
 
 
 
@@ -46,20 +49,28 @@ export class AppSideRegisterComponent {
 
     let request = this.http.post('https://localhost:7123/api/users/register', this.form.value);
 
+    this.isBusy = true;
     request.subscribe({
 
       next: () => {
 
-        alert('success!')
+        this.isBusy = false;
+        this.errorDetail = undefined;
+        this.router.navigate(['/authentication/login']);
+        this.toastr.success('Your registration complete successfully!', 'Congratulation')
+
       },
       error: (err) => {
 
+        this.isBusy = false;
         this.errorDetail = err;
+
+        this.toastr.error(err, 'Error!');
 
       }
 
     });
-    alert(JSON.stringify(this.form.value));
+    // alert(JSON.stringify(this.form.value));
 
 
   }

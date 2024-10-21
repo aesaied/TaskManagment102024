@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^18.0.3",
+    "@angular/animations": "^18.2.8",
     "@angular/cdk": "^18.0.3",
     "@angular/common": "^18.0.3",
     "@angular/compiler": "^18.0.3",
@@ -28,6 +28,7 @@
     "iconify": "^1.4.0",
     "ng-apexcharts": "^1.7.6",
     "ngx-scrollbar": "^11.0.0",
+    "ngx-toastr": "^19.0.0",
     "rxjs": "~7.5.0",
     "sass": "^1.57.1",
     "tslib": "^2.3.0",

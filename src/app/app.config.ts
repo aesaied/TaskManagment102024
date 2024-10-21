@@ -28,28 +28,29 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { errorHandlingInterceptor } from './services/error-handling.interceptor';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(
-      routes,
-      withInMemoryScrolling({
-        scrollPositionRestoration: 'enabled',
-        anchorScrolling: 'enabled',
-      }),
-      withComponentInputBinding()
-    ),
-    provideHttpClient(withInterceptorsFromDi(), withInterceptors([errorHandlingInterceptor])),
-    provideClientHydration(),
-    provideAnimationsAsync(),
+  providers: [provideToastr(),
+  provideZoneChangeDetection({ eventCoalescing: true }),
+  provideRouter(
+    routes,
+    withInMemoryScrolling({
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+    }),
+    withComponentInputBinding()
+  ),
+  provideHttpClient(withInterceptorsFromDi(), withInterceptors([errorHandlingInterceptor])),
+  provideClientHydration(),
+  provideAnimationsAsync(),
 
-    importProvidersFrom(
-      FormsModule,
-      ReactiveFormsModule,
-      MaterialModule,
-      TablerIconsModule.pick(TablerIcons),
-      NgScrollbarModule,
-    ),
+  importProvidersFrom(
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    TablerIconsModule.pick(TablerIcons),
+    NgScrollbarModule,
+  ),
   ],
 };

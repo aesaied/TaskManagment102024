@@ -90,8 +90,8 @@
 
             </mat-form-field>
 
-            <button mat-flat-button color="primary" class="w-100" type="submit" [disabled]="form.invalid">
-              Sign Up
+            <button mat-flat-button color="primary" class="w-100" type="submit" [disabled]="form.invalid || isBusy">
+              {{isBusy?"Signing up...": "Sign Up"}}
             </button>
             <!-- input -->
           </form>
