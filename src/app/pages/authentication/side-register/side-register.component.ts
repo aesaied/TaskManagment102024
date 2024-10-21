@@ -11,6 +11,7 @@ import { MaterialModule } from '../../../material.module';
 import { CommonModule } from '@angular/common';
 import { ValidationPipe } from 'src/app/pipes/validation.pipe';
 import { compareValidator } from 'src/app/validators/compare.validator';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-side-register',
@@ -19,7 +20,7 @@ import { compareValidator } from 'src/app/validators/compare.validator';
   templateUrl: './side-register.component.html',
 })
 export class AppSideRegisterComponent {
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient) {
 
 
 
@@ -37,5 +38,16 @@ export class AppSideRegisterComponent {
 
 
   });
+
+  submit(): void {
+
+
+    let request = this.http.post('https://localhost:7123/api/users/register', this.form.value);
+
+    request.subscribe();
+    alert(JSON.stringify(this.form.value));
+
+
+  }
 
 }

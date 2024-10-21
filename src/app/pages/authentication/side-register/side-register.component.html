@@ -30,7 +30,7 @@
 
           <div class="or-border m-t-30">or sign up with</div>
 
-          <form class="m-t-30" [formGroup]="form">
+          <form class="m-t-30" [formGroup]="form" (ngSubmit)="submit()">
             <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Name</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
               <input matInput formControlName="fullName" />
@@ -83,9 +83,9 @@
 
             </mat-form-field>
 
-            <a [routerLink]="['/']" mat-flat-button color="primary" class="w-100">
+            <button mat-flat-button color="primary" class="w-100" type="submit" [disabled]="form.invalid">
               Sign Up
-            </a>
+            </button>
             <!-- input -->
           </form>
           <span class="d-block f-w-500 text-center m-t-24">Already have an Account?
