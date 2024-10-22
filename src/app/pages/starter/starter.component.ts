@@ -32,6 +32,13 @@ export class StarterComponent implements OnInit {
 
   weatherData$: Observable<Weather[]>
   userList: User[];
+
+  refreshWeather() {
+
+    this.weatherData$ = this.http.get<Weather[]>(
+      'https://localhost:7123/WeatherForecast');
+
+  }
   ngOnInit(): void {
 
 

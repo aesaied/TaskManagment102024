@@ -29,6 +29,8 @@ import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { errorHandlingInterceptor } from './services/error-handling.interceptor';
 import { provideToastr } from 'ngx-toastr';
+import { authenticateInterceptor } from './services/authenticate.interceptor';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [provideToastr(),
@@ -41,7 +43,7 @@ export const appConfig: ApplicationConfig = {
     }),
     withComponentInputBinding()
   ),
-  provideHttpClient(withInterceptorsFromDi(), withInterceptors([errorHandlingInterceptor])),
+  provideHttpClient(withInterceptorsFromDi(), withInterceptors([errorHandlingInterceptor, authenticateInterceptor])),
   provideClientHydration(),
   provideAnimationsAsync(),
 
@@ -50,7 +52,7 @@ export const appConfig: ApplicationConfig = {
     ReactiveFormsModule,
     MaterialModule,
     TablerIconsModule.pick(TablerIcons),
-    NgScrollbarModule,
+    NgScrollbarModule
   ),
   ],
 };
