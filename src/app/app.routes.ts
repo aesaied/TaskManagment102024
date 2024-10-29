@@ -32,6 +32,16 @@ export const routes: Routes = [
             (m) => m.UsersRoutes
           ),
       },
+
+      {
+        path: 'projects',
+        loadChildren: () => import('./pages/project/project.routs').then
+          (
+            (m) => m.ProjectsRoutes
+          )
+
+
+      },
       {
         path: 'extra',
         loadChildren: () =>

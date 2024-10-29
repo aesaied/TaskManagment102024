@@ -30,10 +30,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { errorHandlingInterceptor } from './services/error-handling.interceptor';
 import { provideToastr } from 'ngx-toastr';
 import { authenticateInterceptor } from './services/authenticate.interceptor';
+import { ProjectService } from './services/project.service';
+import { AppTokens } from './app.tokens';
+
+
 
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideToastr(),
+  providers: [provideToastr(), { useValue: 'https://localhost:7123/api', provide: AppTokens.API },
   provideZoneChangeDetection({ eventCoalescing: true }),
   provideRouter(
     routes,

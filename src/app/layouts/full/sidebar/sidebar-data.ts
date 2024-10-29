@@ -10,6 +10,11 @@ export const navItems: NavItem[] = [
     route: '/dashboard',
   },
   {
+    displayName: 'Projects',
+    iconName: 'solar:widget-add-line-duotone',
+    route: '/projects',
+  },
+  {
     navCap: 'Ui Components',
     divider: true
   },

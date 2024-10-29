@@ -1,0 +1,52 @@
+<p>project-list works!</p>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Project name</th>
+        </tr>
+    </thead>
+
+    @if($projects | async; as projects )
+    {
+
+
+
+    <tbody>
+        @for (project of projects ; track $index) {
+        <tr>
+            <td>
+                @if(currentEditProject!==project){
+                <button (click)="delete(project)">X</button>
+                {{project.name}}
+
+                <button (click)="edit(project)">E</button>
+
+                }
+                @else {
+                <input [formControl]="controlUpdate"><button (click)="update()"
+                    [disabled]="controlUpdate.invalid">U</button>
+                <button (click)="cancelEdit()">X</button>
+
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+
+    }
+
+
+    <tfoot>
+        <tr>
+            <td>
+
+                <input #myAddInput [formControl]="controlAdd"><button (click)="add()"
+                    [disabled]="controlAdd.invalid">+</button>
+            </td>
+        </tr>
+    </tfoot>
+
+</table>
